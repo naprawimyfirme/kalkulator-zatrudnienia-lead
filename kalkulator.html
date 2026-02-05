@@ -2,26 +2,23 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kalkulator kosztów pracy</title>
   <style>
-    /* Ogólne style strony */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 20px;
       background-color: #f8f9fa;
       color: #333;
     }
-    section {
-      padding: 40px 0;
-    }
+    
     .container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 0 20px;
     }
     
-    h1 {
+    h2 {
       font-size: 2.2rem;
       margin-bottom: 10px;
       color: #222;
@@ -35,7 +32,6 @@
       font-size: 1.1rem;
     }
     
-    /* Style kalkulatora */
     .calculator-form {
       background-color: #fff;
       padding: 30px;
@@ -116,167 +112,165 @@
       background-color: #5a6268;
     }
     
-    /* Wyniki */
     .results-container {
       background-color: #fff;
-      padding: 40px;
+      padding: 25px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     
-    .result-hero {
+    .result-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #222;
       text-align: center;
-      padding: 30px;
+      margin-bottom: 20px;
+    }
+    
+    .result-hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 20px;
       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       border-radius: 8px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      gap: 20px;
+    }
+    
+    .result-hero .result-item {
+      flex: 1;
+      text-align: center;
     }
     
     .result-hero .label {
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       color: #666;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     
     .result-hero .value {
-      font-size: 2.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: #8e42ff;
-      margin-bottom: 20px;
+      color: #dc3545;
     }
     
     .result-hero .vs {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       color: #999;
-      margin: 15px 0;
-    }
-    
-    .result-hero .sub-value {
-      font-size: 1.8rem;
-      color: #333;
-      font-weight: 600;
+      flex-shrink: 0;
     }
     
     .conclusion {
       background-color: #f8f9fa;
-      padding: 20px;
+      padding: 15px;
       border-radius: 8px;
       border-left: 4px solid #8e42ff;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
     }
     
     .conclusion strong {
       color: #8e42ff;
-      font-size: 1.1rem;
-    }
-    
-    .breakdown-toggle {
-      background: none;
-      border: none;
-      color: #8e42ff;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: 600;
-      padding: 10px 0;
-      margin-bottom: 15px;
-      text-align: left;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    .breakdown-toggle:hover {
-      opacity: 0.8;
+      font-size: 1rem;
     }
     
     .breakdown-content {
-      display: none;
-      padding: 20px;
+      display: block;
+      padding: 15px;
       background-color: #f8f9fa;
       border-radius: 8px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
     
-    .breakdown-content.show {
-      display: block;
+    .breakdown-content h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #333;
     }
     
     .breakdown-item {
       display: flex;
       justify-content: space-between;
-      padding: 10px 0;
+      padding: 8px 0;
       border-bottom: 1px solid #e9ecef;
+      font-size: 0.9rem;
     }
     
     .breakdown-item:last-child {
       border-bottom: none;
-      padding-top: 15px;
-      margin-top: 10px;
+      padding-top: 12px;
+      margin-top: 8px;
       border-top: 2px solid #dee2e6;
       font-weight: 600;
     }
     
     .assumptions {
       background-color: #f8f9fa;
-      padding: 20px;
+      padding: 15px;
       border-radius: 8px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
     
     .assumptions h3 {
       margin-top: 0;
-      margin-bottom: 15px;
-      font-size: 1.1rem;
+      margin-bottom: 10px;
+      font-size: 1rem;
       color: #333;
     }
     
     .assumptions p {
-      margin: 8px 0;
-      font-size: 0.95rem;
+      margin: 6px 0;
+      font-size: 0.85rem;
       color: #555;
     }
     
-    /* Formularz lead magnet */
     .lead-form {
       background: linear-gradient(135deg, #8e42ff 0%, #7332d9 100%);
-      padding: 40px;
+      padding: 25px;
       border-radius: 8px;
       color: #fff;
       text-align: center;
+      margin-top: 20px;
     }
     
     .lead-form h3 {
       margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.5rem;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
     }
     
     .lead-form p {
-      margin-bottom: 25px;
+      margin-bottom: 15px;
       opacity: 0.95;
+      font-size: 0.9rem;
     }
     
-    .lead-form input {
-      width: 100%;
-      max-width: 400px;
-      padding: 12px 15px;
-      margin-bottom: 15px;
+    .form-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .form-row input {
+      flex: 1;
+      padding: 10px 12px;
       border: none;
       border-radius: 4px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       box-sizing: border-box;
     }
     
     .lead-form .checkbox-container {
       text-align: left;
-      max-width: 400px;
-      margin: 15px auto 20px;
+      max-width: 100%;
+      margin: 10px auto 15px;
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
     }
     
     .lead-form .checkbox-container input[type="checkbox"] {
@@ -286,7 +280,7 @@
     }
     
     .lead-form .checkbox-container label {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       opacity: 0.95;
       margin: 0;
     }
@@ -294,10 +288,10 @@
     .lead-form button {
       background-color: #fff;
       color: #8e42ff;
-      padding: 14px 40px;
+      padding: 12px 30px;
       border: none;
       border-radius: 6px;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s;
@@ -312,6 +306,46 @@
       opacity: 0.5;
       cursor: not-allowed;
       transform: none;
+    }
+    
+    .loading-animation {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    
+    .spinner {
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top: 4px solid #fff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .loading-animation p {
+      margin: 10px 0;
+    }
+    
+    .success-message {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 25px;
+      border-radius: 8px;
+      border: 1px solid #c3e6cb;
+      text-align: center;
+      line-height: 1.6;
+    }
+    
+    .success-message strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
     }
     
     .info-box {
@@ -329,84 +363,82 @@
   </style>
 </head>
 <body>
-  <section>
-    <div class="container">
-      <h1>Kalkulator kosztów pracy</h1>
-      <p class="subtitle">Sprawdź ile faktycznie kosztuje Cię pracownik</p>
-      
-      <div class="calculator-form">
-        <form id="calculatorForm">
-          <label>
-            Stawka godzinowa netto (zł):
-            <input type="number" step="0.01" id="netWage" value="30" min="0">
-            <small>Tyle pracownik dostaje do ręki</small>
-          </label>
-          
-          <label>
-            Typ umowy:
-            <select id="contractType" onchange="updateEmployerCosts()">
-              <option value="uop">Umowa o pracę (UoP) - 64%</option>
-              <option value="uz">Umowa zlecenie - 25%</option>
-              <option value="uod">Umowa o dzieło - 2%</option>
-              <option value="b2b">B2B / Samozatrudnienie - 0%</option>
-            </select>
-          </label>
-          
-          <label>
-            Koszty pracodawcy - ZUS i składki (%):
-            <input type="number" step="0.1" id="employerPct" value="64" min="0" max="200">
-          </label>
-          
-          <div class="info-box">
-            <strong>💡 Koszty pracodawcy w 2025:</strong><br>
-            • UoP (64%): ZUS, Fundusz Pracy, FGŚP<br>
-            • Zlecenie (25%): Zależnie od sytuacji zleceniobiorcy<br>
-            • Dzieło (2%): Tylko składka wypadkowa<br>
-            • B2B (0%): Brak składek, ale wyższe stawki
-          </div>
-          
-          <label>
-            Dni urlopu rocznie:
-            <input type="number" step="0.1" id="vacationDays" value="26" min="0" max="50">
-            <small>Dotyczy tylko UoP</small>
-          </label>
-          
-          <label>
-            Dni L4 / zwolnień rocznie:
-            <input type="number" step="0.1" id="l4Days" value="0" min="0" max="100">
-            <small>Dotyczy tylko UoP</small>
-          </label>
-          
-          <label>
-            Liczba dni roboczych w roku:
-            <input type="number" id="workingDays" value="240" min="200" max="260">
-          </label>
-          
-          <label>
-            Godziny pracy dziennie:
-            <input type="number" step="0.5" id="dailyHours" value="8" min="1" max="12">
-          </label>
-          
-          <label>
-            Sezonowość firmy (%):
-            <input type="number" step="0.1" id="seasonality" value="0" min="0" max="50">
-            <small>Dodatkowe koszty związane z sezonowością</small>
-          </label>
-          
-          <label>
-            Błąd założeń/inne czynniki (%):
-            <input type="number" step="0.1" id="errorPct" value="0" min="0" max="30">
-            <small>Specyficzne dla branży</small>
-          </label>
-          
-          <button type="button" class="btn-primary" onclick="calculateCosts()">Oblicz koszty</button>
-          <button type="button" class="btn-secondary" onclick="resetForm()">Reset</button>
-        </form>
-      </div>
-      
-      <div id="results" class="hidden"></div>
+  <div class="container">
+    <h2>Kalkulator kosztów pracy</h2>
+    <p class="subtitle">Sprawdź ile faktycznie kosztuje Cię pracownik</p>
+    
+    <div class="calculator-form">
+      <form id="calculatorForm">
+        <label>
+          Stawka godzinowa netto (zł):
+          <input type="number" step="0.01" id="netWage" value="30" min="0">
+          <small>Tyle pracownik dostaje do ręki</small>
+        </label>
+        
+        <label>
+          Typ umowy:
+          <select id="contractType" onchange="updateEmployerCosts()">
+            <option value="uop">Umowa o pracę (UoP) - 64%</option>
+            <option value="uz">Umowa zlecenie - 25%</option>
+            <option value="uod">Umowa o dzieło - 2%</option>
+            <option value="b2b">B2B / Samozatrudnienie - 0%</option>
+          </select>
+        </label>
+        
+        <label>
+          Koszty pracodawcy - ZUS i składki (%):
+          <input type="number" step="0.1" id="employerPct" value="64" min="0" max="200">
+        </label>
+        
+        <div class="info-box">
+          <strong>💡 Koszty pracodawcy w 2025:</strong><br>
+          • UoP (64%): ZUS, Fundusz Pracy, FGŚP<br>
+          • Zlecenie (25%): Zależnie od sytuacji zleceniobiorcy<br>
+          • Dzieło (2%): Tylko składka wypadkowa<br>
+          • B2B (0%): Brak składek, ale wyższe stawki
+        </div>
+        
+        <label>
+          Dni urlopu rocznie:
+          <input type="number" step="0.1" id="vacationDays" value="26" min="0" max="50">
+          <small>Dotyczy tylko UoP</small>
+        </label>
+        
+        <label>
+          Dni L4 / zwolnień rocznie:
+          <input type="number" step="0.1" id="l4Days" value="0" min="0" max="100">
+          <small>Dotyczy tylko UoP</small>
+        </label>
+        
+        <label>
+          Liczba dni roboczych w roku:
+          <input type="number" id="workingDays" value="240" min="200" max="260">
+        </label>
+        
+        <label>
+          Godziny pracy dziennie:
+          <input type="number" step="0.5" id="dailyHours" value="8" min="1" max="12">
+        </label>
+        
+        <label>
+          Sezonowość firmy (%):
+          <input type="number" step="0.1" id="seasonality" value="0" min="0" max="50">
+          <small>Dodatkowe koszty związane z sezonowością</small>
+        </label>
+        
+        <label>
+          Błąd założeń/inne czynniki (%):
+          <input type="number" step="0.1" id="errorPct" value="0" min="0" max="30">
+          <small>Specyficzne dla branży</small>
+        </label>
+        
+        <button type="button" class="btn-primary" onclick="calculateCosts()">Oblicz koszty</button>
+        <button type="button" class="btn-secondary" onclick="resetForm()">Reset</button>
+      </form>
     </div>
-  </section>
+    
+    <div id="results" class="hidden"></div>
+  </div>
 
   <script>
     function updateEmployerCosts() {
@@ -457,7 +489,6 @@
         return;
       }
       
-      // Obliczenia
       const nominalHours = totalWorkingDays * dailyHours;
       const realWorkingDays = totalWorkingDays - (vacationDays + l4Days);
       const realWorkingHours = realWorkingDays * dailyHours;
@@ -478,21 +509,21 @@
       const contractType = document.getElementById('contractType').value;
       const isUoP = contractType === 'uop';
       
-      // Prosty breakdown - zgodny z emailem
       const zusPerHour = netWage * employerMultiplier;
       const urlop_l4_PerHour = effectiveHourlyCost - netWage - zusPerHour;
       
       let breakdownHTML = `
+        <h3>Skąd taka różnica?</h3>
         <div class="breakdown-item">
-          <span>Wynagrodzenie pracownika <span style="color: #888; font-size: 0.9em;">(to co płacisz)</span></span>
+          <span>Wynagrodzenie pracownika <span style="color: #888; font-size: 0.85em;">(to co płacisz)</span></span>
           <span><strong>${netWage.toFixed(2)} zł/h</strong></span>
         </div>
         <div class="breakdown-item">
-          <span>ZUS pracodawcy (${employerPct}%)</span>
+          <span>Dodatkowe obciążenia po stronie pracodawcy (+${employerPct}%)</span>
           <span><strong>+${zusPerHour.toFixed(2)} zł/h</strong></span>
         </div>
         <div class="breakdown-item">
-          <span>Efekt urlopu/L4 <span style="color: #888; font-size: 0.9em;">(w każdej godzinie płacisz za urlop i L4!)</span></span>
+          <span>Efekt urlopu/L4 <span style="color: #888; font-size: 0.85em;">(w każdej godzinie płacisz za urlop i L4!)</span></span>
           <span><strong>+${urlop_l4_PerHour.toFixed(2)} zł/h</strong></span>
         </div>
         <div class="breakdown-item">
@@ -503,14 +534,20 @@
       
       const resultHTML = `
         <div class="results-container">
+          <h2 class="result-title">Wynik</h2>
+          
           <div class="result-hero">
-            <div class="label">Pracownik dostaje</div>
-            <div class="sub-value">${netWage.toFixed(2)} zł/h</div>
+            <div class="result-item">
+              <div class="label">Pracownik dostaje</div>
+              <div class="value" style="color: #333;">${netWage.toFixed(2)} zł/h</div>
+            </div>
             
-            <div class="vs">▼</div>
+            <div class="vs">→</div>
             
-            <div class="label">Ty płacisz</div>
-            <div class="value">${effectiveHourlyCost.toFixed(2)} zł/h</div>
+            <div class="result-item">
+              <div class="label">Ty płacisz</div>
+              <div class="value">${effectiveHourlyCost.toFixed(2)} zł/h</div>
+            </div>
           </div>
           
           <div class="conclusion">
@@ -518,12 +555,7 @@
             Płacisz ${netWage.toFixed(2)} zł/h pracownikowi, ale faktyczny koszt 1h pracy to <strong>${effectiveHourlyCost.toFixed(2)} zł</strong>
           </div>
           
-          <button class="breakdown-toggle" onclick="toggleBreakdown()">
-            <span>Skąd taka różnica?</span>
-            <span id="toggle-icon">▼</span>
-          </button>
-          
-          <div class="breakdown-content" id="breakdown">
+          <div class="breakdown-content">
             ${breakdownHTML}
           </div>
           
@@ -538,22 +570,41 @@
           </div>
           
           <div class="lead-form">
-            <h3>📧 Wyślij te dane na swojego maila</h3>
-            <p>Otrzymasz szczegółowe podsumowanie + przydatne informacje o tym jak zwiększyć przychody w firmie</p>
+            <div id="leadFormContent">
+              <h3>📧 Wyślij podsumowanie na swojego maila</h3>
+              <p>Otrzymasz szczegółowe podsumowanie + przydatne informacje o tym jak zwiększyć przychody w firmie</p>
+              
+              <form id="leadForm" onsubmit="handleLeadSubmit(event)">
+                <div class="form-row">
+                  <input type="text" id="leadName" placeholder="Twoje imię" required>
+                  <input type="email" id="leadEmail" placeholder="Twój email" required>
+                </div>
+                
+                <div class="checkbox-container">
+                  <input type="checkbox" id="leadConsent" required>
+                  <label for="leadConsent">
+                    Zgadzam się na przetwarzanie danych osobowych i otrzymanie materiałów dotyczących rozwoju firmy
+                  </label>
+                </div>
+                
+                <button type="submit">Wyślij raport na email</button>
+              </form>
+            </div>
             
-            <form id="leadForm" onsubmit="handleLeadSubmit(event)">
-              <input type="text" id="leadName" placeholder="Twoje imię" required>
-              <input type="email" id="leadEmail" placeholder="Twój email" required>
-              
-              <div class="checkbox-container">
-                <input type="checkbox" id="leadConsent" required>
-                <label for="leadConsent">
-                  Zgadzam się na przetwarzanie danych osobowych i otrzymanie materiałów dotyczących rozwoju firmy
-                </label>
+            <div id="loadingMessage" class="hidden">
+              <div class="loading-animation">
+                <div class="spinner"></div>
+                <p><strong>⏳ Generuję raport...</strong></p>
+                <p style="font-size: 0.9rem; opacity: 0.9;">Przygotowuję szczegółowe podsumowanie</p>
               </div>
-              
-              <button type="submit">Wyślij raport na email</button>
-            </form>
+            </div>
+            
+            <div id="successMessage" class="hidden">
+              <div class="success-message">
+                <strong>✅ Dziękujemy!</strong>
+                Raport został wysłany na Twój adres e-mail. Za chwilę otrzymasz wiadomość z prośbą o potwierdzenie zapisu do newslettera. Po akceptacji będziemy mogli przesyłać Ci dodatkowe, przydatne materiały.
+              </div>
+            </div>
           </div>
         </div>
       `;
@@ -561,10 +612,11 @@
       document.getElementById("results").innerHTML = resultHTML;
       document.getElementById("results").classList.remove('hidden');
       
-      // Smooth scroll do wyników
       document.getElementById("results").scrollIntoView({ behavior: 'smooth', block: 'start' });
       
-      // Zapisz dane do użycia później
+      // Aktualizuj wysokość iframe po pokazaniu wyników
+      setTimeout(sendHeightToParent, 100);
+      
       window.calculationData = {
         netWage: netWage,
         effectiveHourlyCost: effectiveHourlyCost,
@@ -582,25 +634,9 @@
         breakdown: {
           netWagePerHour: netWage,
           employerPerHour: zusPerHour,
-          urlop_l4_PerHour: urlop_l4_PerHour,
-          l4PerHour: 0,
-          seasonalityPerHour: 0,
-          errorPerHour: 0
+          urlop_l4_PerHour: urlop_l4_PerHour
         }
       };
-    }
-
-    function toggleBreakdown() {
-      const breakdown = document.getElementById('breakdown');
-      const icon = document.getElementById('toggle-icon');
-      
-      if (breakdown.classList.contains('show')) {
-        breakdown.classList.remove('show');
-        icon.textContent = '▼';
-      } else {
-        breakdown.classList.add('show');
-        icon.textContent = '▲';
-      }
     }
 
     function handleLeadSubmit(event) {
@@ -615,7 +651,6 @@
         return;
       }
       
-      // Dane do wysłania
       const formData = {
         name: name,
         email: email,
@@ -623,34 +658,24 @@
         timestamp: new Date().toISOString()
       };
       
-      console.log('Wysyłam dane:', formData);
+      // Ukryj formularz, pokaż loading
+      document.getElementById('leadFormContent').classList.add('hidden');
+      document.getElementById('loadingMessage').classList.remove('hidden');
       
-      // Wyłącz button żeby nie klikać 2 razy
-      const submitBtn = event.target.querySelector('button[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Wysyłam...';
+      // Aktualizuj wysokość iframe
+      setTimeout(sendHeightToParent, 100);
       
-      // Wysyłka do Google Apps Script
-      fetch('https://script.google.com/macros/s/AKfycbwHl-iDjMFVXnAlGjrWxIFIgwff-9thwKyJVW1zsJfUcELge7D0SKYaYIVNg0ZFVuXW/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(() => {
-        alert(`Dziękujemy ${name}! 🎉\n\nRaport został wysłany na ${email}\n\nSprawdź swoją skrzynkę (także SPAM)`);
-        document.getElementById('leadForm').reset();
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Wyślij raport na email';
-      })
-      .catch(error => {
-        console.error('Błąd wysyłki:', error);
-        alert('Wystąpił błąd podczas wysyłki. Spróbuj ponownie lub napisz do nas: kontakt@naprawimyfirme.pl');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Wyślij raport na email';
-      });
+      // Wyślij dane przez sendBeacon (gwarantuje wysłanie nawet przy zamknięciu strony)
+      const blob = new Blob([JSON.stringify(formData)], { type: 'application/json' });
+      navigator.sendBeacon('https://script.google.com/macros/s/AKfycbwHl-iDjMFVXnAlGjrWxIFIgwff-9thwKyJVW1zsJfUcELge7D0SKYaYIVNg0ZFVuXW/exec', blob);
+      
+      // Po 2.5 sekundach pokaż sukces
+      setTimeout(() => {
+        document.getElementById('loadingMessage').classList.add('hidden');
+        document.getElementById('successMessage').classList.remove('hidden');
+        // Aktualizuj wysokość iframe po pokazaniu sukcesu
+        setTimeout(sendHeightToParent, 100);
+      }, 2500);
     }
 
     function getContractTypeName(contractType) {
@@ -676,14 +701,13 @@
       document.getElementById('contractType').value = 'uop';
       document.getElementById('results').classList.add('hidden');
       updateEmployerCosts();
+      // Aktualizuj wysokość iframe po resecie
+      setTimeout(sendHeightToParent, 100);
     }
 
-    // Automatyczne ustawienie przy starcie
-    window.addEventListener('load', function() {
-      updateEmployerCosts();
-    });
-
-    // Funkcje pomocnicze dla iframe
+    // ========================================
+    // FUNKCJE DLA IFRAME - DOSTOSOWANIE WYSOKOŚCI
+    // ========================================
     function sendHeightToParent() {
       const height = document.body.scrollHeight;
       if (window.parent && window.parent.postMessage) {
@@ -691,9 +715,13 @@
       }
     }
 
-    window.addEventListener('load', sendHeightToParent);
+    window.addEventListener('load', function() {
+      updateEmployerCosts();
+      sendHeightToParent();
+    });
+    
     window.addEventListener('resize', sendHeightToParent);
-
+    
     document.addEventListener('click', function() {
       setTimeout(sendHeightToParent, 300);
     });
