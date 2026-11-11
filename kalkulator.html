@@ -402,13 +402,13 @@
         </label>
         
         <label>
-          Koszty pracodawcy - ZUS i składki (%):
+          Narzut na stawkę netto - podatek i składki (%):
           <input type="number" step="0.1" id="employerPct" value="64" min="0" max="200">
         </label>
         
         <div class="info-box">
-          <strong>💡 Koszty pracodawcy w 2025:</strong><br>
-          • UoP (64%): ZUS, Fundusz Pracy, FGŚP<br>
+          <strong>💡 Narzut na stawkę netto w 2026:</strong><br>
+          • UoP (ok. 64%): podatek i składki pracownika oraz składki pracodawcy (ZUS, Fundusz Pracy, FGŚP), liczone od kwoty netto<br>
           • Zlecenie (25%): Zależnie od sytuacji zleceniobiorcy<br>
           • Dzieło (2%): Tylko składka wypadkowa<br>
           • B2B (0%): Brak składek, ale wyższe stawki
@@ -428,7 +428,7 @@
         
         <label>
           Liczba dni roboczych w roku:
-          <input type="number" id="workingDays" value="240" min="200" max="260">
+          <input type="number" id="workingDays" value="251" min="200" max="260">
         </label>
         
         <label>
@@ -502,7 +502,7 @@
       const l4Days = parseFloat(document.getElementById("l4Days").value) || 0;
       const seasonalityPct = parseFloat(document.getElementById("seasonality").value) || 0;
       const errorPct = parseFloat(document.getElementById("errorPct").value) || 0;
-      const totalWorkingDays = parseFloat(document.getElementById("workingDays").value) || 240;
+      const totalWorkingDays = parseFloat(document.getElementById("workingDays").value) || 251;
       const dailyHours = parseFloat(document.getElementById("dailyHours").value) || 8;
       
       if (netWage <= 0) {
@@ -845,7 +845,7 @@
       document.getElementById('l4Days').value = 0;
       document.getElementById('seasonality').value = 0;
       document.getElementById('errorPct').value = 0;
-      document.getElementById('workingDays').value = 240;
+      document.getElementById('workingDays').value = 251;
       document.getElementById('dailyHours').value = 8;
       document.getElementById('contractType').value = 'uop';
       document.getElementById('results').classList.add('hidden');
