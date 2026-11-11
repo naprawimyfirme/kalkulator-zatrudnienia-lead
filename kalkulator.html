@@ -456,6 +456,16 @@
     <div id="results" class="hidden"></div>
   </div>
 
+<!-- CTA NaprawimyFirme -->
+<div style="max-width:720px;margin:24px auto;padding:24px 28px;background:#1A1A2E;border-radius:12px;font-family:system-ui,-apple-system,sans-serif;box-sizing:border-box;text-align:left;">
+  <p style="margin:0 0 8px;font-size:18px;font-weight:600;color:#ffffff;line-height:1.35;">Pracownik kosztuje więcej, niż widać na pasku. Czy Twoje ceny to pokrywają?</p>
+  <p style="margin:0 0 16px;font-size:14px;color:#B8B9C8;line-height:1.6;">Audyt procesów biznesowych pokazuje, ile realnie kosztuje praca zespołu i które usługi na siebie zarabiają.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;">
+    <a href="https://naprawimyfirme.pl/audyt-procesow-biznesowych" target="_top" style="display:inline-block;background:#8e42ff;color:#ffffff;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;text-decoration:none;">Zobacz audyt procesów</a>
+    <a href="https://naprawimyfirme.pl/kontakt" target="_top" style="display:inline-block;border:1px solid #6b6b85;color:#ffffff;font-weight:600;font-size:14px;padding:12px 20px;border-radius:8px;text-decoration:none;">Umów bezpłatną konsultację</a>
+  </div>
+</div>
+
   <script>
     // ========================================
     // KONFIGURACJA - WEBHOOK URL
@@ -604,7 +614,7 @@
                 <div class="checkbox-container">
                   <input type="checkbox" id="leadConsent" required>
                   <label for="leadConsent">
-                    Zgadzam się na przetwarzanie danych osobowych i otrzymanie materiałów dotyczących rozwoju firmy
+                    Zgadzam się na przetwarzanie danych osobowych i otrzymanie materiałów dotyczących rozwoju firmy. Szczegóły: <a href="https://naprawimyfirme.pl/polityka-prywatnosci" target="_blank" rel="noopener">polityka prywatności</a>
                   </label>
                 </div>
                 
@@ -722,8 +732,6 @@
       setTimeout(sendHeightToParent, 100);
       
       // Debug log
-      console.log('📤 Wysyłam dane do webhook:', WEBHOOK_URL);
-      console.log('📦 Dane:', JSON.stringify(formData, null, 2));
       
       // ========================================
       // METODA 1: fetch z no-cors (główna)
@@ -743,38 +751,9 @@
         showSuccess();
       })
       .catch(error => {
-        console.error('❌ Błąd fetch:', error);
-        
-        // Fallback: spróbuj przez Image pixel (backup)
-        console.log('🔄 Próbuję fallback przez Image...');
-        sendViaImage(formData);
+        console.error('Błąd wysyłki formularza');
+        showError('Nie udało się wysłać formularza. Sprawdź połączenie i spróbuj ponownie.');
       });
-    }
-    
-    // ========================================
-    // FALLBACK: Wysyłka przez Image pixel
-    // ========================================
-    function sendViaImage(formData) {
-      const encodedData = encodeURIComponent(JSON.stringify(formData));
-      const img = new Image();
-      
-      img.onload = function() {
-        console.log('✅ Image fallback - sukces');
-        showSuccess();
-      };
-      
-      img.onerror = function() {
-        // Nawet jeśli błąd, Google Apps Script mógł przyjąć dane
-        console.log('⚠️ Image fallback - możliwy sukces');
-        showSuccess();
-      };
-      
-      // Timeout - po 3 sekundach zakładamy sukces
-      setTimeout(() => {
-        showSuccess();
-      }, 3000);
-      
-      img.src = WEBHOOK_URL + '?data=' + encodedData + '&t=' + Date.now();
     }
     
     // ========================================
@@ -814,7 +793,7 @@
           showSuccess();
         })
         .catch(() => {
-          showSuccess(); // Zakładamy sukces mimo błędu (no-cors limitation)
+          showError('Nie udało się wysłać formularza. Sprawdź połączenie i spróbuj ponownie.');
         });
       } else {
         document.getElementById('errorMessage').classList.add('hidden');
